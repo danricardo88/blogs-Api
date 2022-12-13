@@ -10,6 +10,7 @@ app.use(express.json());
 app.post('/login', userController.User.getLogin);
 app.post('/user', userController.User.userCreate);
 app.get('/user', userMiddlewares.handleToken, userController.User.getAll);
+app.get('/user/:id', userMiddlewares.handleToken, userController.User.getId);
 
 // ...
 

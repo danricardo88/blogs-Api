@@ -10,26 +10,38 @@ const { User } = require('../models');
 
 const userCreate = async ({ displayName, email, password, image }) => { // mudar nome
   const create = await User.create({ displayName, email, password, image });
-  console.log('userCreate');
+  // console.log(create, 'userCreate');
   return create;
 };
 
 const getLogin = async ({ email: findEmail, password: findPassword }) => {
   const emailUser = await User.findAll();
-  console.log('getLogin');
+  // console.log(emailUser, 'getLogin');
   return emailUser.find(({ email, password }) => email === findEmail && password === findPassword);
 };
 
 const getEmail = async (email) => {
   const emailUser = await User.findOne({ where: { email } });
-  console.log('getEmail');
+  // console.log(emailUser, 'getEmail');
   return emailUser;
 }; 
 
 const getAll = async () => {
   const user = await User.findAll({ attributes: { exclude: ['password'] } });
-  console.log('getAll');
+  // console.log(user, 'getAll');
   return user;
+};
+
+// const getId = async (id) => {
+//   const idGet = await User.findAll(id, { attributes: { exclude: ['password'] } });
+//   console.log(idGet, 'getAll');
+//   return idGet;
+// };
+
+const getId = async (id) => {
+  const [idGet] = await User.findAll({ where: { id }, attributes: { exclude: ['password'] } });
+  // console.log(idGet, 'idGet');
+  return idGet;
 };
 
 module.exports = {
@@ -37,4 +49,5 @@ module.exports = {
   getLogin,
   getEmail,
   getAll,
+  getId,
 };
