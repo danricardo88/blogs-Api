@@ -63,7 +63,13 @@ const userCreate = async (requeste, response) => {
   }
 };
 
+const getAll = async (_request, response) => {
+  const getAllUser = await User.getAll();
+  return response.status(OK).json(getAllUser);
+};
+
 module.exports = {
   getLogin,
   userCreate,
+  getAll,
 };

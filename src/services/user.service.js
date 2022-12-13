@@ -10,21 +10,31 @@ const { User } = require('../models');
 
 const userCreate = async ({ displayName, email, password, image }) => { // mudar nome
   const create = await User.create({ displayName, email, password, image });
+  console.log('userCreate');
   return create;
 };
 
 const getLogin = async ({ email: findEmail, password: findPassword }) => {
   const emailUser = await User.findAll();
+  console.log('getLogin');
   return emailUser.find(({ email, password }) => email === findEmail && password === findPassword);
 };
 
 const getEmail = async (email) => {
   const emailUser = await User.findOne({ where: { email } });
+  console.log('getEmail');
   return emailUser;
 }; 
+
+const getAll = async () => {
+  const user = await User.findAll({ attributes: { exclude: ['password'] } });
+  console.log('getAll');
+  return user;
+};
 
 module.exports = {
   userCreate,
   getLogin,
   getEmail,
+  getAll,
 };
