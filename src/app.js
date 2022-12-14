@@ -1,16 +1,17 @@
 const express = require('express');
-const userController = require('./controllers');
-const userMiddlewares = require('./middlewares');
-
+const control = require('./controllers');
+const middle = require('./middlewares');
 // ...
 
 const app = express();
 
 app.use(express.json());
-app.post('/login', userController.User.getLogin);
-app.post('/user', userController.User.userCreate);
-app.get('/user', userMiddlewares.handleToken, userController.User.getAll);
-app.get('/user/:id', userMiddlewares.handleToken, userController.User.getId);
+app.post('/login', control.User.getLogin);
+app.post('/user', control.User.userCreate);
+app.get('/user', middle.handleToken, control.User.getAll);
+app.get('/user/:id', middle.handleToken, control.User.getId);
+app.post('/categories', middle.handleToken,
+ middle.handleTokenCategories, control.Category.categoriesCreate);
 
 // ...
 
