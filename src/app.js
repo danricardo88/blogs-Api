@@ -12,7 +12,7 @@ app.get('/user', middle.handleToken, control.User.getAll);
 app.get('/user/:id', middle.handleToken, control.User.getId);
 app.post('/categories', middle.handleToken,
  middle.handleTokenCategories, control.Category.categoriesCreate);
-
+app.get('/categories', middle.handleToken, control.Category.getAll);
 // ...
 
 // É importante exportar a constante `app`,
