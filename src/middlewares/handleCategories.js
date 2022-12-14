@@ -1,4 +1,4 @@
-const validateCategory = require('./validateCategory');
+const validateCategory = require('./validation/validateCategory');
 
 const ERRO = 400;
 

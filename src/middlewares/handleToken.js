@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../services');
+// const { User } = require('../services');
 
 const pass = process.env.JWT_SECRET || 'suaSenhaSecreta';
 
@@ -14,8 +14,9 @@ module.exports = async (request, response, prox) => {
 
   try {
     const cod = jwt.verify(token, pass);
-    const user = await User.getAll(cod.userId);
-    request.user = user;
+    // const user = await User.getAll(cod.userId);
+    // request.user = user;
+    request.user = cod;
 
     prox();
   } catch (error) {
